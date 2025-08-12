@@ -2,32 +2,412 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>My Styled Webpage</title>
-    <link rel="stylesheet" href="styles.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enhanced Animated Webpage</title>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #4361ee;
+            --secondary: #3f37c9;
+            --accent: #4cc9f0;
+            --light: #f8f9fa;
+            --dark: #212529;
+            --success: #4ade80;
+            --text: #333;
+            --shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            --transition: all 0.4s ease;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Roboto', sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            color: var(--text);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 2rem 1rem;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            max-width: 1000px;
+            width: 100%;
+            background: white;
+            border-radius: 20px;
+            box-shadow: var(--shadow);
+            overflow: hidden;
+            position: relative;
+            animation: fadeIn 1s ease-out;
+            margin: 2rem auto;
+        }
+        
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            text-align: center;
+            padding: 3rem 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            animation: slideIn 1s ease-out, float 4s ease-in-out infinite;
+        }
+        
+        .header-subtitle {
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 0 auto;
+            opacity: 0.9;
+        }
+        
+        .content {
+            padding: 3rem 2rem;
+        }
+        
+        p {
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+            animation: fadeInUp 1s ease-out;
+            animation-fill-mode: both;
+        }
+        
+        p:nth-child(1) {
+            animation-delay: 0.2s;
+        }
+        
+        p:nth-child(2) {
+            animation-delay: 0.4s;
+        }
+        
+        .img-container {
+            text-align: center;
+            margin: 2rem 0;
+            position: relative;
+            animation: fadeIn 1s ease-out;
+        }
+        
+        .img-placeholder {
+            width: 100%;
+            max-width: 600px;
+            height: 350px;
+            margin: 0 auto;
+            background: linear-gradient(45deg, #4cc9f0, #4361ee);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            position: relative;
+            box-shadow: var(--shadow);
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        .img-placeholder::before {
+            content: "";
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.4) 0%, rgba(255,255,255,0) 70%);
+            animation: rotate 15s linear infinite;
+        }
+        
+        .img-placeholder i {
+            font-size: 5rem;
+            color: white;
+            z-index: 2;
+            text-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
+        
+        .caption {
+            margin-top: 1rem;
+            color: #666;
+            font-style: italic;
+        }
+        
+        a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: bold;
+            position: relative;
+            transition: var(--transition);
+        }
+        
+        a::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent);
+            transition: var(--transition);
+        }
+        
+        a:hover {
+            color: var(--secondary);
+        }
+        
+        a:hover::after {
+            width: 100%;
+        }
+        
+        .button-container {
+            text-align: center;
+            margin: 2rem 0;
+        }
+        
+        button {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            border: none;
+            padding: 1rem 2.5rem;
+            font-size: 1.1rem;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: var(--transition);
+            box-shadow: 0 4px 15px rgba(67, 97, 238, 0.4);
+            position: relative;
+            overflow: hidden;
+            font-weight: bold;
+            letter-spacing: 1px;
+            animation: pulse 2s infinite;
+        }
+        
+        button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(67, 97, 238, 0.6);
+        }
+        
+        button:active {
+            transform: translateY(1px);
+        }
+        
+        button::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(255,255,255,0.4) 0%, rgba(255,255,255,0) 70%);
+            transform: scale(0);
+            transition: transform 0.5s ease;
+        }
+        
+        button:active::after {
+            transform: scale(2);
+            opacity: 0;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 2rem;
+            background: var(--light);
+            color: #666;
+            font-size: 0.9rem;
+        }
+        
+        .animated-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.1;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><polygon fill="%234361ee" points="0,0 100,0 100,100 0,100"/></svg>');
+            background-size: cover;
+        }
+        
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        @keyframes slideIn {
+            from { 
+                transform: translateY(-50px);
+                opacity: 0;
+            }
+            to { 
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+        
+        @keyframes fadeInUp {
+            from { 
+                transform: translateY(30px);
+                opacity: 0;
+            }
+            to { 
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+        
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+            100% { transform: translateY(0px); }
+        }
+        
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(67, 97, 238, 0.7); }
+            70% { box-shadow: 0 0 0 15px rgba(67, 97, 238, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(67, 97, 238, 0); }
+        }
+        
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        
+        /* Responsive design */
+        @media (max-width: 768px) {
+            h1 { font-size: 2.2rem; }
+            .header-subtitle { font-size: 1rem; }
+            .content { padding: 2rem 1.5rem; }
+            .img-placeholder { height: 250px; }
+        }
+        
+        @media (max-width: 480px) {
+            h1 { font-size: 1.8rem; }
+            .content { padding: 1.5rem 1rem; }
+            .img-placeholder { height: 200px; }
+            button { padding: 0.8rem 2rem; }
+        }
+    </style>
 </head>
 <body>
-    <h1>Welcome to My Webpage!</h1>
+    <div class="animated-bg"></div>
+    
+    <div class="container">
+        <header>
+            <h1>Welcome to My Webpage!</h1>
+            <p class="header-subtitle">Discover the art of modern web development with interactive animations</p>
+        </header>
+        
+        <div class="content">
+            <p>
+                Web development is an exciting and ever-evolving field that empowers individuals to create amazing online experiences.
+                From simple personal blogs to complex web applications used by millions, the web connects people around the world.
+                By learning HTML, CSS, and JavaScript, anyone can start crafting their own corner of the internet. This webpage is 
+                part of a journey to master these essential web technologies. Along the way, you'll discover how structure, style, 
+                and interactivity come together to build powerful and beautiful websites. Keep experimenting, keep building, and 
+                always stay curious—there's always something new to learn in the world of web development!
+            </p>
+            
+            <div class="img-container">
+                <div class="img-placeholder">
+                    <i class="fas fa-laptop-code"></i>
+                </div>
+                <p class="caption">Sample Image Placeholder with Animation</p>
+            </div>
+            
+            <p>
+                For in-depth learning resources, visit the
+                <a href="https://developer.mozilla.org/" target="_blank">MDN Web Docs</a>, 
+                often called the "Wikipedia of web development".
+            </p>
+            
+            <div class="button-container">
+                <button onclick="showMessage()">
+                    <i class="fas fa-magic"></i> Click Me!
+                </button>
+            </div>
+        </div>
+        
+        <footer>
+            <p>Created with ❤️ | Responsive & Animated Web Design | Works on all devices</p>
+        </footer>
+    </div>
 
-    <p>
-        Web development is an exciting and ever-evolving field that empowers individuals to create amazing online experiences.
-        From simple personal blogs to complex web applications used by millions, the web connects people around the world.
-        By learning HTML, CSS, and JavaScript, anyone can start crafting their own corner of the internet. This webpage is 
-        part of a journey to master these essential web technologies. Along the way, you'll discover how structure, style, 
-        and interactivity come together to build powerful and beautiful websites. Keep experimenting, keep building, and 
-        always stay curious—there's always something new to learn in the world of web development!
-    </p>
-
-    <img src="webpage.png" alt="Sample Image">
-
-    <p>
-        For in-depth learning resources, visit the
-        <a href="https://developer.mozilla.org/" target="_blank">MDN Web Docs</a>, 
-        often called the "Wikipedia of web development".
-    </p>
-
-    <button onclick="showMessage()">Click Me!</button>
-
-    <script src="script.js"></script>
+    <script>
+        // Function to show message with animation
+        function showMessage() {
+            // Create animated notification element
+            const notification = document.createElement('div');
+            notification.innerHTML = `
+                <div style="
+                    position: fixed;
+                    top: 20px;
+                    right: 20px;
+                    background: linear-gradient(135deg, #4cc9f0, #4361ee);
+                    color: white;
+                    padding: 15px 25px;
+                    border-radius: 10px;
+                    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+                    z-index: 1000;
+                    animation: notifIn 0.5s ease-out, notifOut 0.5s ease-in 2.5s forwards;
+                ">
+                    <i class="fas fa-check-circle"></i> You clicked the button! Web development is awesome!
+                </div>
+            `;
+            
+            // Add styles for the animation
+            const style = document.createElement('style');
+            style.innerHTML = `
+                @keyframes notifIn {
+                    from { transform: translateX(100px); opacity: 0; }
+                    to { transform: translateX(0); opacity: 1; }
+                }
+                @keyframes notifOut {
+                    from { transform: translateX(0); opacity: 1; }
+                    to { transform: translateX(100px); opacity: 0; }
+                }
+            `;
+            
+            document.head.appendChild(style);
+            document.body.appendChild(notification);
+            
+            // Remove the notification after animation completes
+            setTimeout(() => {
+                notification.remove();
+                style.remove();
+            }, 3000);
+        }
+        
+        // Animation on scroll for content elements
+        document.addEventListener('DOMContentLoaded', () => {
+            // Add hover effect to image placeholder
+            const imgPlaceholder = document.querySelector('.img-placeholder');
+            imgPlaceholder.addEventListener('mouseover', () => {
+                imgPlaceholder.style.transform = 'scale(1.02)';
+            });
+            imgPlaceholder.addEventListener('mouseout', () => {
+                imgPlaceholder.style.transform = 'scale(1)';
+            });
+            
+            // Add subtle animation to header subtitle
+            const subtitle = document.querySelector('.header-subtitle');
+            let scale = 1;
+            let direction = 0.001;
+            
+            function breathe() {
+                scale += direction;
+                if (scale > 1.02) direction = -0.001;
+                if (scale < 1) direction = 0.001;
+                subtitle.style.transform = `scale(${scale})`;
+                requestAnimationFrame(breathe);
+            }
+            
+            breathe();
+        });
+    </script>
 </body>
 </html>
